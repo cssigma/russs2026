@@ -498,4 +498,83 @@
                 <div class="right-column">
                     <div class="card">
                         <div class="card-title">
-                            <
+                            <i class="fas fa-chart-line"></i>
+                            <span>СТАТИСТИКА</span>
+                        </div>
+                        
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                            <div>
+                                <span style="color: var(--gray);">Вопрос:</span>
+                                <span style="font-size: 1.3rem; font-weight: bold; margin-left: 10px;">
+                                    <span id="currentQ">0</span> / <span id="totalQ">10</span>
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <div id="statsContent">
+                            <div style="text-align: center; padding: 40px; color: var(--gray);">
+                                <div style="font-size: 60px; margin-bottom: 20px;">📊</div>
+                                <p>Статистика появится после ответов на вопросы</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-title">
+                            <i class="fas fa-list-ol"></i>
+                            <span>СПИСОК ВОПРОСОВ (10)</span>
+                        </div>
+                        
+                        <div class="questions-list" id="questionsList">
+                            <!-- Вопросы загрузятся через JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- РЕЖИМ ПРЕЗЕНТАЦИИ -->
+    <div id="presentationMode" class="presentation-mode">
+        <div class="presentation-header">
+            <div style="display: flex; align-items: center; gap: 20px;">
+                <button onclick="exitPresentation()" class="btn btn-danger" style="width: auto;">
+                    <i class="fas fa-times"></i> ВЫЙТИ
+                </button>
+                <h2 style="color: var(--accent);">
+                    <i class="fas fa-tv"></i> РЕЖИМ ПРЕЗЕНТАЦИИ
+                </h2>
+            </div>
+            
+            <div style="display: flex; gap: 15px;">
+                <button onclick="toggleCompactMode()" class="btn" id="compactBtn" style="width: auto; background: rgba(255,255,255,0.1);">
+                    📱 КОМПАКТНО
+                </button>
+                <button onclick="showAnswer()" class="btn btn-success" style="width: auto;">
+                    <i class="fas fa-eye"></i> ПОКАЗАТЬ ОТВЕТ
+                </button>
+            </div>
+        </div>
+        
+        <div class="presentation-timer" id="presentationTimer">
+            45
+        </div>
+        
+        <div class="presentation-question" id="presentationQuestion">
+            <!-- Текст вопроса загрузится здесь -->
+        </div>
+        
+        <div style="text-align: center; margin-top: 30px;">
+            <h3 style="color: var(--accent); margin-bottom: 10px;">
+                Вопрос <span id="presentationQNum">1</span> из 10
+            </h3>
+        </div>
+    </div>
+
+    <!-- Firebase config -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="teacher.js"></script>
+</body>
+</html>
