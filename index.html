@@ -9,26 +9,26 @@
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
     <style>
         /* ============================================
-           НЕОБРУТАЛИЗМ — КЛАССИКА
+           НЕОБРУТАЛИЗМ — ТЁМНАЯ ТЕМА
            ============================================ */
         :root {
-            --nb-black: #000000;
+            --nb-bg: #0A0A0A;
+            --nb-card: #1A1A1A;
             --nb-white: #FFFFFF;
             --nb-yellow: #FFE600;
-            --nb-blue: #0057FF;
             --nb-green: #00E676;
             --nb-red: #FF1744;
-            --nb-shadow: 6px 6px 0 var(--nb-black);
-            --nb-shadow-sm: 4px 4px 0 var(--nb-black);
-            --nb-border: 3px solid var(--nb-black);
+            --nb-shadow: 5px 5px 0 var(--nb-yellow);
+            --nb-shadow-sm: 3px 3px 0 var(--nb-yellow);
+            --nb-border: 3px solid var(--nb-white);
         }
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
             font-family: 'Arial Black', 'Impact', 'Segoe UI', sans-serif;
-            background: var(--nb-white);
-            color: var(--nb-black);
+            background: var(--nb-bg);
+            color: var(--nb-white);
             min-height: 100vh;
             line-height: 1.6;
             font-weight: 700;
@@ -41,25 +41,22 @@
             text-align: center;
             padding: 60px 20px;
             margin-bottom: 40px;
-            background: var(--nb-yellow);
+            background: var(--nb-card);
             border: var(--nb-border);
             box-shadow: var(--nb-shadow);
         }
         
         .logo {
-            font-size: 100px;
+            font-size: 90px;
             margin-bottom: 20px;
             display: inline-block;
-            color: var(--nb-black);
-            text-shadow: 
-                4px 4px 0 var(--nb-white),
-                8px 8px 0 var(--nb-black);
+            color: var(--nb-yellow);
+            text-shadow: 4px 4px 0 var(--nb-white);
         }
         
         h1 {
-            font-size: 3.5rem;
-            color: var(--nb-black);
-            text-shadow: none;
+            font-size: 3rem;
+            color: var(--nb-white);
             margin-bottom: 15px;
             font-weight: 900;
             text-transform: uppercase;
@@ -67,12 +64,17 @@
         }
         
         .subtitle {
-            font-size: 1.2rem;
-            color: var(--nb-black);
+            font-size: 1.1rem;
+            color: var(--nb-yellow);
             max-width: 600px;
             margin: 0 auto 20px;
             font-weight: 700;
             text-transform: uppercase;
+        }
+        
+        .home-header p {
+            color: #999;
+            font-weight: 700;
         }
         
         /* СТАТИСТИКА */
@@ -84,36 +86,36 @@
         }
         
         .stat-item {
-            background: var(--nb-white);
+            background: var(--nb-card);
             border: var(--nb-border);
-            box-shadow: var(--nb-shadow);
+            box-shadow: var(--nb-shadow-sm);
             padding: 35px 25px;
             text-align: center;
             transition: all 0.1s ease;
         }
         
         .stat-item:hover {
-            transform: translate(-3px, -3px);
-            box-shadow: 9px 9px 0 var(--nb-black);
+            transform: translate(-2px, -2px);
+            box-shadow: 5px 5px 0 var(--nb-yellow);
         }
         
         .stat-icon {
-            font-size: 52px;
+            font-size: 48px;
             margin-bottom: 20px;
             display: inline-block;
-            color: var(--nb-black);
+            color: var(--nb-yellow);
         }
         
         .stat-item h4 {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             margin-bottom: 10px;
-            color: var(--nb-black);
+            color: var(--nb-white);
             text-transform: uppercase;
             font-weight: 900;
         }
         
         .stat-item p {
-            color: var(--nb-black);
+            color: #999;
             font-weight: 700;
         }
         
@@ -126,7 +128,7 @@
         }
         
         .role-card {
-            background: var(--nb-white);
+            background: var(--nb-card);
             border: var(--nb-border);
             box-shadow: var(--nb-shadow);
             padding: 50px 35px;
@@ -136,37 +138,36 @@
         
         .role-card:hover {
             transform: translate(-3px, -3px);
-            box-shadow: 9px 9px 0 var(--nb-black);
+            box-shadow: 8px 8px 0 var(--nb-yellow);
         }
         
         .teacher-card {
-            background: var(--nb-blue);
-        }
-        
-        .teacher-card h3,
-        .teacher-card p,
-        .teacher-card .role-icon {
-            color: var(--nb-white);
+            border-top: 8px solid var(--nb-yellow);
         }
         
         .student-card {
-            background: var(--nb-yellow);
+            border-top: 8px solid var(--nb-green);
         }
         
         .role-icon {
             font-size: 70px;
             margin-bottom: 25px;
             display: inline-block;
-            color: var(--nb-black);
+            color: var(--nb-white);
         }
         
         .role-card h3 {
-            font-size: 1.8rem;
+            font-size: 1.7rem;
             margin-bottom: 20px;
-            color: var(--nb-black);
+            color: var(--nb-white);
             text-transform: uppercase;
             font-weight: 900;
             letter-spacing: 2px;
+        }
+        
+        .role-card p {
+            color: #999;
+            font-weight: 700;
         }
         
         /* КНОПКИ */
@@ -176,7 +177,7 @@
             justify-content: center;
             gap: 12px;
             padding: 20px 35px;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             font-weight: 900;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -191,28 +192,28 @@
         }
         
         .btn-primary {
-            background: var(--nb-black);
-            color: var(--nb-white);
+            background: var(--nb-yellow);
+            color: #000;
         }
         
         .btn-success {
-            background: var(--nb-black);
-            color: var(--nb-white);
+            background: var(--nb-green);
+            color: #000;
         }
         
         .btn:hover {
             transform: translate(-2px, -2px);
-            box-shadow: 6px 6px 0 var(--nb-black);
+            box-shadow: 5px 5px 0 var(--nb-white);
         }
         
         .btn:active {
             transform: translate(2px, 2px);
-            box-shadow: 2px 2px 0 var(--nb-black);
+            box-shadow: 1px 1px 0 var(--nb-white);
         }
         
         /* ИНСТРУКЦИЯ */
         .steps-container {
-            background: var(--nb-white);
+            background: var(--nb-card);
             border: var(--nb-border);
             box-shadow: var(--nb-shadow);
             padding: 50px 40px;
@@ -222,6 +223,7 @@
         .steps-container h2 {
             text-transform: uppercase;
             letter-spacing: 2px;
+            color: var(--nb-yellow);
         }
         
         .steps {
@@ -232,8 +234,8 @@
         }
         
         .step {
-            background: var(--nb-white);
-            border: var(--nb-border);
+            background: var(--nb-bg);
+            border: 2px solid var(--nb-white);
             box-shadow: var(--nb-shadow-sm);
             padding: 30px;
             transition: all 0.1s ease;
@@ -241,7 +243,7 @@
         
         .step:hover {
             transform: translate(-2px, -2px);
-            box-shadow: 6px 6px 0 var(--nb-black);
+            box-shadow: 5px 5px 0 var(--nb-yellow);
         }
         
         .step-number {
@@ -250,12 +252,21 @@
             justify-content: center;
             width: 45px;
             height: 45px;
-            background: var(--nb-black);
-            color: var(--nb-white);
+            background: var(--nb-yellow);
+            color: #000;
             font-weight: 900;
             font-size: 1.3rem;
             margin-bottom: 20px;
-            border: 2px solid var(--nb-black);
+            border: 2px solid var(--nb-white);
+        }
+        
+        .step p {
+            color: #ccc;
+            font-weight: 700;
+        }
+        
+        .step strong {
+            color: var(--nb-white);
         }
         
         /* ПОДВАЛ */
@@ -264,7 +275,7 @@
             padding: 50px 20px;
             margin-top: 80px;
             border-top: var(--nb-border);
-            color: var(--nb-black);
+            color: #999;
         }
         
         .tech-stack {
@@ -276,24 +287,23 @@
         }
         
         .tech-item {
-            background: var(--nb-white);
+            background: var(--nb-card);
             padding: 10px 20px;
-            border: 2px solid var(--nb-black);
-            box-shadow: 3px 3px 0 var(--nb-black);
+            border: 2px solid var(--nb-white);
+            box-shadow: 3px 3px 0 var(--nb-yellow);
             font-size: 0.95rem;
             display: flex;
             align-items: center;
             gap: 10px;
-            color: var(--nb-black);
+            color: var(--nb-white);
             font-weight: 900;
             text-transform: uppercase;
         }
         
         /* МОДЕРАТОР */
         .moderator-link {
-            color: var(--nb-black);
-            text-decoration: underline;
-            text-decoration-thickness: 3px;
+            color: #000;
+            text-decoration: none;
             padding: 8px 15px;
             transition: all 0.1s ease;
             display: inline-flex;
@@ -301,8 +311,8 @@
             gap: 8px;
             cursor: pointer;
             background: var(--nb-yellow);
-            border: 2px solid var(--nb-black);
-            box-shadow: 3px 3px 0 var(--nb-black);
+            border: 2px solid var(--nb-white);
+            box-shadow: 3px 3px 0 var(--nb-white);
             margin-top: 15px;
             font-weight: 900;
             text-transform: uppercase;
@@ -310,7 +320,7 @@
         
         .moderator-link:hover {
             transform: translate(-1px, -1px);
-            box-shadow: 4px 4px 0 var(--nb-black);
+            box-shadow: 4px 4px 0 var(--nb-white);
         }
         
         /* АДАПТИВНОСТЬ */
@@ -323,7 +333,7 @@
         
         @media (max-width: 480px) {
             .container { padding: 15px; }
-            h1 { font-size: 1.7rem; letter-spacing: 1px; }
+            h1 { font-size: 1.6rem; letter-spacing: 1px; }
             .home-header { padding: 40px 15px; }
         }
     </style>
@@ -332,9 +342,9 @@
     <div class="container">
         <header class="home-header">
             <div class="logo">📖</div>
-            <h1>РУССКИЙ ЯЗЫК КАХУТ 2025</h1>
+            <h1>РУССКИЙ ЯЗЫК КАХУТ</h1>
             <p class="subtitle">Чередующиеся гласные в корне</p>
-            <p style="color: var(--nb-black); max-width: 800px; margin: 0 auto; font-weight: 700;">
+            <p style="max-width: 800px; margin: 0 auto;">
                 10 вопросов по русскому языку для 9 класса. Учитель показывает вопрос → ученики отвечают → учитель показывает ответ.
             </p>
         </header>
@@ -348,7 +358,7 @@
             <div class="stat-item">
                 <div class="stat-icon">⚡</div>
                 <h4>Простое управление</h4>
-                <p>Без таймеров, ручной контроль</p>
+                <p>Без таймеров</p>
             </div>
             <div class="stat-item">
                 <div class="stat-icon">📱</div>
@@ -358,7 +368,7 @@
             <div class="stat-item">
                 <div class="stat-icon">👥</div>
                 <h4>Безлимитно</h4>
-                <p>Неограниченное число игроков</p>
+                <p>Любое число игроков</p>
             </div>
         </div>
 
@@ -366,20 +376,20 @@
             <div class="role-card teacher-card">
                 <div class="role-icon">👨‍🏫</div>
                 <h3>УЧИТЕЛЬ</h3>
-                <p style="margin-bottom: 30px; color: var(--nb-white); font-weight: 700;">
-                    Запускайте игру на смарт-доске, показывайте вопросы, управляйте процессом вручную. Видите статистику ответов в реальном времени.
+                <p style="margin-bottom: 30px;">
+                    Запускайте игру на смарт-доске, показывайте вопросы, управляйте процессом вручную.
                 </p>
                 <a href="teacher.html" class="btn btn-primary">
                     <i class="fas fa-chalkboard-teacher"></i>
-                    ОТКРЫТЬ ПАНЕЛЬ
+                    ПАНЕЛЬ УПРАВЛЕНИЯ
                 </a>
             </div>
 
             <div class="role-card student-card">
                 <div class="role-icon">🧑‍🎓</div>
                 <h3>УЧЕНИК</h3>
-                <p style="margin-bottom: 30px; color: var(--nb-black); font-weight: 700;">
-                    Подключайтесь с телефона, отвечайте на вопросы, видите свой прогресс и соревнуйтесь с одноклассниками.
+                <p style="margin-bottom: 30px;">
+                    Подключайтесь с телефона, отвечайте, соревнуйтесь с одноклассниками.
                 </p>
                 <a href="student.html" class="btn btn-success">
                     <i class="fas fa-mobile-alt"></i>
@@ -389,49 +399,41 @@
         </div>
 
         <div class="steps-container">
-            <h2 style="text-align: center; margin-bottom: 30px; color: var(--nb-black);">
+            <h2 style="text-align: center; margin-bottom: 30px;">
                 <i class="fas fa-play-circle"></i> КАК ЭТО РАБОТАЕТ
             </h2>
             <div class="steps">
                 <div class="step">
                     <div class="step-number">1</div>
-                    <p><strong>Учитель</strong> открывает панель управления и создаёт игру</p>
+                    <p><strong>Учитель</strong> открывает панель и создаёт игру</p>
                 </div>
                 <div class="step">
                     <div class="step-number">2</div>
-                    <p><strong>Ученики</strong> подключаются с телефонов по коду (8 цифр)</p>
+                    <p><strong>Ученики</strong> подключаются по коду (8 цифр)</p>
                 </div>
                 <div class="step">
                     <div class="step-number">3</div>
-                    <p><strong>Учитель показывает вопрос</strong> на доске. Ученики отвечают</p>
+                    <p><strong>Учитель показывает вопрос.</strong> Ученики отвечают</p>
                 </div>
                 <div class="step">
                     <div class="step-number">4</div>
-                    <p><strong>Учитель нажимает "Показать ответ"</strong> и видит статистику</p>
+                    <p><strong>Учитель показывает ответ</strong> и видит статистику</p>
                 </div>
             </div>
         </div>
 
         <footer class="home-footer">
-            <p style="font-weight: 900; text-transform: uppercase;">Интерактивная система | Чередующиеся гласные в корне</p>
+            <p style="font-weight: 900; text-transform: uppercase; color: #fff;">Чередующиеся гласные в корне</p>
             <div class="tech-stack">
-                <span class="tech-item">
-                    <i class="fas fa-fire"></i> Firebase
-                </span>
-                <span class="tech-item">
-                    <i class="fab fa-html5"></i> HTML5
-                </span>
-                <span class="tech-item">
-                    <i class="fab fa-js"></i> JavaScript
-                </span>
-                <span class="tech-item">
-                    <i class="fas fa-graduation-cap"></i> 9 класс
-                </span>
+                <span class="tech-item"><i class="fas fa-fire"></i> Firebase</span>
+                <span class="tech-item"><i class="fab fa-html5"></i> HTML5</span>
+                <span class="tech-item"><i class="fab fa-js"></i> JavaScript</span>
+                <span class="tech-item"><i class="fas fa-graduation-cap"></i> 9 класс</span>
             </div>
             <p style="margin-top: 20px; font-weight: 900;">
                 © 2025 РУССКИЙ ЯЗЫК КАХУТ | 
                 <span id="moderatorSignature" class="moderator-link">
-                    <i class="fas fa-user-shield"></i> Панель модератора
+                    <i class="fas fa-user-shield"></i> Модератор
                 </span>
             </p>
         </footer>
