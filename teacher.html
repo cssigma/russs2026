@@ -7,34 +7,34 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary: #4361ee;
-            --secondary: #3a0ca3;
-            --accent: #4cc9f0;
-            --success: #00ff88;
-            --warning: #ff9e00;
-            --danger: #ff416c;
-            --dark: #1a1a2e;
-            --light: #f8f9fa;
-            --gray: #8f8f8f;
+            --nb-black: #000000;
+            --nb-white: #FFFFFF;
+            --nb-yellow: #FFE600;
+            --nb-blue: #0057FF;
+            --nb-green: #00E676;
+            --nb-red: #FF1744;
+            --nb-shadow: 6px 6px 0 var(--nb-black);
+            --nb-shadow-sm: 4px 4px 0 var(--nb-black);
+            --nb-border: 3px solid var(--nb-black);
         }
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0f172a, #1e293b);
-            color: var(--light);
+            font-family: 'Arial Black', 'Impact', 'Segoe UI', sans-serif;
+            background: var(--nb-white);
+            color: var(--nb-black);
             min-height: 100vh;
-            overflow-x: hidden;
+            font-weight: 700;
         }
         
         .teacher-container { display: flex; min-height: 100vh; }
         
+        /* САЙДБАР */
         .sidebar {
             width: 300px;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--nb-yellow);
+            border-right: var(--nb-border);
             padding: 30px 20px;
             display: flex;
             flex-direction: column;
@@ -49,39 +49,32 @@
         .logo-icon {
             font-size: 60px;
             margin-bottom: 15px;
-            background: linear-gradient(45deg, var(--accent), var(--primary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--nb-black);
+            text-shadow: 3px 3px 0 var(--nb-white);
         }
         
         .logo h2 {
-            font-size: 1.5rem;
-            background: linear-gradient(45deg, var(--accent), var(--primary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-size: 1.4rem;
+            color: var(--nb-black);
+            text-transform: uppercase;
+            font-weight: 900;
+            letter-spacing: 1px;
         }
         
+        /* ОСНОВНОЙ КОНТЕНТ */
         .main-content {
             flex: 1;
             margin-left: 300px;
             padding: 40px;
-            overflow-y: auto;
         }
         
+        /* КАРТОЧКИ */
         .card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
+            background: var(--nb-white);
+            border: var(--nb-border);
+            box-shadow: var(--nb-shadow);
             padding: 30px;
             margin-bottom: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-        }
-        
-        .card:hover {
-            border-color: var(--accent);
-            box-shadow: 0 15px 35px rgba(76, 201, 240, 0.1);
         }
         
         .card-title {
@@ -89,53 +82,66 @@
             align-items: center;
             gap: 15px;
             margin-bottom: 25px;
-            color: var(--accent);
+            color: var(--nb-black);
             font-size: 1.4rem;
+            text-transform: uppercase;
+            font-weight: 900;
+            letter-spacing: 1px;
         }
         
+        /* КНОПКИ */
         .btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 12px;
             padding: 18px 30px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            border: none;
-            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: var(--nb-border);
+            border-radius: 0;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.1s ease;
             text-decoration: none;
             width: 100%;
             margin: 8px 0;
+            box-shadow: var(--nb-shadow-sm);
+            font-family: inherit;
         }
         
         .btn-primary {
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            color: white;
+            background: var(--nb-black);
+            color: var(--nb-white);
         }
         
         .btn-success {
-            background: linear-gradient(45deg, var(--accent), #0077b6);
-            color: white;
+            background: var(--nb-green);
+            color: var(--nb-black);
         }
         
         .btn-danger {
-            background: linear-gradient(45deg, var(--danger), #ff4b2b);
-            color: white;
+            background: var(--nb-red);
+            color: var(--nb-white);
         }
         
         .btn-warning {
-            background: linear-gradient(45deg, var(--warning), #ff8c00);
-            color: white;
+            background: var(--nb-yellow);
+            color: var(--nb-black);
         }
         
         .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-            filter: brightness(1.1);
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0 var(--nb-black);
         }
         
+        .btn:active {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0 var(--nb-black);
+        }
+        
+        /* ИГРОКИ */
         .players-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -144,87 +150,87 @@
         }
         
         .player-card {
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 15px;
+            background: var(--nb-white);
+            border: var(--nb-border);
+            box-shadow: var(--nb-shadow-sm);
             padding: 25px;
-            border: 2px solid rgba(0, 173, 181, 0.3);
-            transition: all 0.3s ease;
             position: relative;
+            transition: all 0.1s ease;
         }
         
         .player-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-5px);
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0 var(--nb-black);
         }
         
         .player-avatar {
             width: 60px;
             height: 60px;
-            background: linear-gradient(135deg, var(--accent), var(--primary));
-            border-radius: 50%;
+            background: var(--nb-black);
+            color: var(--nb-white);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 24px;
-            font-weight: bold;
-            color: white;
+            font-weight: 900;
             margin-bottom: 15px;
         }
         
         .player-name {
             font-size: 1.2rem;
-            font-weight: bold;
+            font-weight: 900;
             margin-bottom: 8px;
-            color: white;
+            color: var(--nb-black);
+            text-transform: uppercase;
         }
         
         .player-score {
-            color: var(--success);
-            font-size: 1.5rem;
-            font-weight: bold;
+            color: var(--nb-black);
+            background: var(--nb-green);
+            display: inline-block;
+            padding: 4px 12px;
+            border: 2px solid var(--nb-black);
+            font-size: 1.2rem;
+            font-weight: 900;
             margin-bottom: 5px;
         }
         
+        /* КОД ИГРЫ */
         .game-code {
             font-family: 'Courier New', monospace;
             font-size: 3.5rem;
-            font-weight: bold;
-            letter-spacing: 5px;
-            color: white;
+            font-weight: 900;
+            letter-spacing: 8px;
+            color: var(--nb-black);
             text-align: center;
             margin: 20px 0;
             padding: 20px;
-            border: 3px solid var(--accent);
-            border-radius: 15px;
-            background: rgba(0, 0, 0, 0.3);
-            text-shadow: 0 0 10px rgba(0, 173, 181, 0.7);
+            background: var(--nb-yellow);
+            border: var(--nb-border);
+            box-shadow: var(--nb-shadow);
         }
         
-        .right-panel {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 25px;
-        }
-        
+        /* СТАТИСТИКА */
         .stat-item {
-            background: rgba(255, 255, 255, 0.03);
+            background: var(--nb-white);
+            border: var(--nb-border);
             padding: 25px;
-            border-radius: 15px;
             text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: var(--nb-shadow-sm);
         }
         
         .stat-value {
             font-size: 2.5rem;
-            font-weight: bold;
-            color: var(--success);
+            font-weight: 900;
+            color: var(--nb-black);
             margin-bottom: 10px;
         }
         
+        /* РЕЖИМ ПРЕЗЕНТАЦИИ */
         .presentation-mode {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(135deg, #0f172a, #1a1a2e);
+            background: var(--nb-white);
             z-index: 1000;
             display: none;
             flex-direction: column;
@@ -238,19 +244,24 @@
             align-items: center;
             margin-bottom: 40px;
             padding-bottom: 20px;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            border-bottom: var(--nb-border);
+        }
+        
+        .presentation-header h2 {
+            text-transform: uppercase;
+            font-weight: 900;
         }
         
         .presentation-timer {
-            font-size: 3rem;
-            font-weight: bold;
-            color: var(--success);
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--nb-white);
             text-align: center;
             margin: 20px 0;
             padding: 20px;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 15px;
-            border: 3px solid var(--accent);
+            background: var(--nb-red);
+            border: var(--nb-border);
+            box-shadow: var(--nb-shadow);
         }
         
         .presentation-question {
@@ -261,19 +272,21 @@
             align-items: center;
             text-align: center;
             padding: 40px;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 25px;
+            background: var(--nb-white);
+            border: var(--nb-border);
+            box-shadow: var(--nb-shadow);
             margin: 20px 0;
-            border: 2px solid rgba(255, 255, 255, 0.1);
         }
         
         .presentation-question h2 {
             font-size: 2.2rem;
-            color: white;
+            color: var(--nb-black);
             line-height: 1.4;
             max-width: 900px;
+            font-weight: 900;
         }
         
+        /* СПИСОК ВОПРОСОВ */
         .questions-list {
             max-height: 400px;
             overflow-y: auto;
@@ -286,84 +299,74 @@
             gap: 15px;
             padding: 18px;
             margin: 8px 0;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 12px;
-            border-left: 4px solid var(--accent);
+            background: var(--nb-white);
+            border: 2px solid var(--nb-black);
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.1s ease;
         }
         
         .question-item:hover {
-            background: rgba(255, 255, 255, 0.06);
-            transform: translateX(5px);
+            transform: translate(-2px, -2px);
+            box-shadow: 4px 4px 0 var(--nb-black);
         }
         
         .question-number {
             width: 40px;
             height: 40px;
-            background: var(--accent);
-            color: white;
-            border-radius: 50%;
+            background: var(--nb-black);
+            color: var(--nb-white);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: bold;
+            font-weight: 900;
             flex-shrink: 0;
         }
         
+        .question-item.active {
+            background: var(--nb-yellow);
+        }
+        
+        .question-item.completed {
+            background: var(--nb-green);
+        }
+        
+        /* УВЕДОМЛЕНИЯ */
         .notification {
             position: fixed;
             top: 20px;
             right: 20px;
-            background: var(--success);
-            color: #000;
+            background: var(--nb-yellow);
+            color: var(--nb-black);
             padding: 20px 30px;
-            border-radius: 12px;
-            font-weight: bold;
+            border: var(--nb-border);
+            box-shadow: var(--nb-shadow);
+            font-weight: 900;
+            text-transform: uppercase;
             z-index: 10000;
-            animation: slideIn 0.3s ease;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            display: flex;
-            align-items: center;
-            gap: 15px;
         }
         
-        @keyframes slideIn {
-            from { transform: translateX(100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-        
-        @keyframes slideOut {
-            from { transform: translateX(0); opacity: 1; }
-            to { transform: translateX(100%); opacity: 0; }
-        }
-        
+        /* КИК */
         .kick-btn {
             position: absolute;
             top: 10px;
             right: 10px;
-            background: rgba(255, 65, 108, 0.2);
-            border: 1px solid var(--danger);
-            color: var(--danger);
+            background: var(--nb-red);
+            color: var(--nb-white);
+            border: 2px solid var(--nb-black);
             width: 30px;
             height: 30px;
-            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             opacity: 0;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
+            font-weight: 900;
         }
         
         .player-card:hover .kick-btn { opacity: 1; }
         
-        .kick-btn:hover {
-            background: var(--danger);
-            color: white;
-            transform: scale(1.1);
-        }
-        
+        /* СЕТКА */
         .content-wrapper {
             display: grid;
             grid-template-columns: 2fr 1fr;
@@ -373,6 +376,18 @@
         .left-column { grid-column: 1; }
         .right-column { grid-column: 2; }
         
+        /* СТАТУС ИГРЫ */
+        #gameStatus {
+            background: var(--nb-white) !important;
+            color: var(--nb-black) !important;
+            border: var(--nb-border) !important;
+            box-shadow: var(--nb-shadow-sm) !important;
+            font-weight: 900 !important;
+            text-transform: uppercase !important;
+            padding: 10px 20px !important;
+        }
+        
+        /* АДАПТИВНОСТЬ */
         @media (max-width: 1200px) {
             .content-wrapper { grid-template-columns: 1fr; }
             .left-column, .right-column { grid-column: 1; }
@@ -391,15 +406,9 @@
         
         @media (max-width: 768px) {
             .main-content { padding: 20px; }
-            .game-code { font-size: 2.5rem; }
-            .presentation-question h2 { font-size: 1.8rem; }
-            .players-grid { grid-template-columns: 1fr; }
-        }
-        
-        @media (max-width: 480px) {
-            .btn { padding: 15px 20px; font-size: 1rem; }
-            .game-code { font-size: 2rem; letter-spacing: 3px; }
+            .game-code { font-size: 2.5rem; letter-spacing: 5px; }
             .presentation-question h2 { font-size: 1.5rem; }
+            .players-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -409,7 +418,7 @@
             <div class="logo">
                 <div class="logo-icon">📖</div>
                 <h2>РУССКИЙ ЯЗЫК КАХУТ</h2>
-                <p style="color: var(--gray); margin-top: 5px;">Панель учителя</p>
+                <p style="color: var(--nb-black); margin-top: 5px; font-weight: 700;">Панель учителя</p>
             </div>
             
             <button onclick="startNewGame()" class="btn btn-primary">
@@ -425,7 +434,7 @@
                     <i class="fas fa-play-circle"></i>
                     <span>БЫСТРЫЙ СТАРТ</span>
                 </div>
-                <p style="color: var(--gray); margin-bottom: 20px;">
+                <p style="color: var(--nb-black); margin-bottom: 20px; font-weight: 700;">
                     Создайте игру и покажите код ученикам. Они подключатся с телефонов.
                 </p>
                 <button onclick="startNewGame()" class="btn btn-primary">
@@ -435,11 +444,11 @@
         </div>
 
         <div class="main-content">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px;">
-                <h1 style="font-size: 2.5rem; background: linear-gradient(45deg, var(--accent), var(--primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
-                    <i class="fas fa-chalkboard-teacher"></i> Панель управления
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; flex-wrap: wrap; gap: 15px;">
+                <h1 style="font-size: 2.2rem; color: var(--nb-black); text-transform: uppercase; font-weight: 900; letter-spacing: 2px;">
+                    <i class="fas fa-chalkboard-teacher"></i> ПАНЕЛЬ УПРАВЛЕНИЯ
                 </h1>
-                <div id="gameStatus" style="color: var(--success); font-weight: bold; padding: 10px 20px; background: rgba(0, 255, 136, 0.1); border-radius: 25px;">
+                <div id="gameStatus">
                     🔴 НЕТ АКТИВНОЙ ИГРЫ
                 </div>
             </div>
@@ -453,14 +462,14 @@
                         </div>
                         
                         <div style="text-align: center; margin: 20px 0;">
-                            <h3 style="color: var(--accent); margin-bottom: 10px;">КОД ИГРЫ:</h3>
+                            <h3 style="color: var(--nb-black); margin-bottom: 10px; text-transform: uppercase; font-weight: 900;">КОД ИГРЫ:</h3>
                             <div class="game-code" id="gameCodeDisplay">----</div>
-                            <p style="color: var(--gray);">Покажите этот код ученикам для подключения</p>
+                            <p style="color: var(--nb-black); font-weight: 700;">Покажите этот код ученикам</p>
                         </div>
                         
                         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 25px 0;">
                             <button onclick="startNextQuestion()" class="btn btn-success">
-                                <i class="fas fa-forward"></i> СЛЕДУЮЩИЙ ВОПРОС
+                                <i class="fas fa-forward"></i> СЛЕДУЮЩИЙ
                             </button>
                             <button onclick="showAnswer()" class="btn btn-warning">
                                 <i class="fas fa-eye"></i> ПОКАЗАТЬ ОТВЕТ
@@ -469,13 +478,13 @@
                                 <i class="fas fa-chart-bar"></i> СТАТИСТИКА
                             </button>
                             <button onclick="endQuestion()" class="btn">
-                                <i class="fas fa-stop"></i> ЗАВЕРШИТЬ ВОПРОС
+                                <i class="fas fa-stop"></i> ЗАВЕРШИТЬ
                             </button>
                         </div>
                         
                         <div style="display: flex; justify-content: center; gap: 15px; margin-top: 20px;">
                             <button onclick="resetGame()" class="btn btn-danger" style="width: auto;">
-                                <i class="fas fa-trash"></i> СБРОСИТЬ ИГРУ
+                                <i class="fas fa-trash"></i> СБРОСИТЬ
                             </button>
                         </div>
                     </div>
@@ -487,7 +496,7 @@
                         </div>
                         
                         <div id="playersList">
-                            <div style="text-align: center; padding: 40px; color: var(--gray);">
+                            <div style="text-align: center; padding: 40px; color: var(--nb-black); font-weight: 700;">
                                 <div style="font-size: 60px; margin-bottom: 20px;">👤</div>
                                 <p>Игроки появятся здесь после подключения</p>
                             </div>
@@ -504,17 +513,17 @@
                         
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
                             <div>
-                                <span style="color: var(--gray);">Вопрос:</span>
-                                <span style="font-size: 1.3rem; font-weight: bold; margin-left: 10px;">
+                                <span style="color: var(--nb-black); font-weight: 700;">Вопрос:</span>
+                                <span style="font-size: 1.3rem; font-weight: 900; margin-left: 10px; color: var(--nb-black);">
                                     <span id="currentQ">0</span> / <span id="totalQ">10</span>
                                 </span>
                             </div>
                         </div>
                         
                         <div id="statsContent">
-                            <div style="text-align: center; padding: 40px; color: var(--gray);">
+                            <div style="text-align: center; padding: 40px; color: var(--nb-black); font-weight: 700;">
                                 <div style="font-size: 60px; margin-bottom: 20px;">📊</div>
-                                <p>Статистика появится после ответов на вопросы</p>
+                                <p>Статистика появится после ответов</p>
                             </div>
                         </div>
                     </div>
@@ -522,11 +531,10 @@
                     <div class="card">
                         <div class="card-title">
                             <i class="fas fa-list-ol"></i>
-                            <span>СПИСОК ВОПРОСОВ (10)</span>
+                            <span>ВОПРОСЫ (10)</span>
                         </div>
                         
                         <div class="questions-list" id="questionsList">
-                            <!-- Вопросы загрузятся через JS -->
                         </div>
                     </div>
                 </div>
@@ -534,24 +542,23 @@
         </div>
     </div>
 
-    <!-- РЕЖИМ ПРЕЗЕНТАЦИИ -->
     <div id="presentationMode" class="presentation-mode">
         <div class="presentation-header">
             <div style="display: flex; align-items: center; gap: 20px;">
                 <button onclick="exitPresentation()" class="btn btn-danger" style="width: auto;">
                     <i class="fas fa-times"></i> ВЫЙТИ
                 </button>
-                <h2 style="color: var(--accent);">
+                <h2 style="color: var(--nb-black);">
                     <i class="fas fa-tv"></i> РЕЖИМ ПРЕЗЕНТАЦИИ
                 </h2>
             </div>
             
             <div style="display: flex; gap: 15px;">
-                <button onclick="toggleCompactMode()" class="btn" id="compactBtn" style="width: auto; background: rgba(255,255,255,0.1);">
+                <button onclick="toggleCompactMode()" class="btn" id="compactBtn" style="width: auto; background: var(--nb-white); color: var(--nb-black);">
                     📱 КОМПАКТНО
                 </button>
                 <button onclick="showAnswer()" class="btn btn-success" style="width: auto;">
-                    <i class="fas fa-eye"></i> ПОКАЗАТЬ ОТВЕТ
+                    <i class="fas fa-eye"></i> ОТВЕТ
                 </button>
             </div>
         </div>
@@ -561,17 +568,15 @@
         </div>
         
         <div class="presentation-question" id="presentationQuestion">
-            <!-- Текст вопроса загрузится здесь -->
         </div>
         
         <div style="text-align: center; margin-top: 30px;">
-            <h3 style="color: var(--accent); margin-bottom: 10px;">
+            <h3 style="color: var(--nb-black); margin-bottom: 10px; text-transform: uppercase; font-weight: 900;">
                 Вопрос <span id="presentationQNum">1</span> из 10
             </h3>
         </div>
     </div>
 
-    <!-- Firebase config -->
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
     <script src="firebase-config.js"></script>
