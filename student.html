@@ -8,91 +8,72 @@
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
     <style>
-        /* ОСНОВНЫЕ СТИЛИ */
         :root {
-            --primary: #4361ee;
-            --secondary: #3a0ca3;
-            --accent: #4cc9f0;
-            --success: #00ff88;
-            --warning: #ff9e00;
-            --danger: #ff416c;
-            --dark: #1a1a2e;
-            --light: #f8f9fa;
-            --gray: #8f8f8f;
+            --nb-black: #000000;
+            --nb-white: #FFFFFF;
+            --nb-yellow: #FFE600;
+            --nb-blue: #0057FF;
+            --nb-green: #00E676;
+            --nb-red: #FF1744;
+            --nb-shadow: 6px 6px 0 var(--nb-black);
+            --nb-shadow-sm: 4px 4px 0 var(--nb-black);
+            --nb-border: 3px solid var(--nb-black);
         }
         
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0f172a, #1e293b);
-            color: var(--light);
+            font-family: 'Arial Black', 'Impact', 'Segoe UI', sans-serif;
+            background: var(--nb-white);
+            color: var(--nb-black);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
+            font-weight: 700;
         }
         
         .student-container {
             width: 100%;
             max-width: 500px;
-            background: #1e293b;
-            border-radius: 25px;
-            overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
-            border: 2px solid #334155;
+            background: var(--nb-white);
+            border: var(--nb-border);
+            box-shadow: 8px 8px 0 var(--nb-black);
         }
         
-        /* ЭКРАНЫ */
         .screen {
             display: none;
             padding: 40px;
-            animation: fadeIn 0.5s ease;
         }
         
-        .screen.active {
-            display: block;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+        .screen.active { display: block; }
         
         /* ЭКРАН ВХОДА */
-        .login-box {
-            text-align: center;
-        }
+        .login-box { text-align: center; }
         
         .logo {
             font-size: 80px;
             margin-bottom: 20px;
-            color: var(--accent);
-            animation: float 3s ease-in-out infinite;
-            text-shadow: 0 0 15px rgba(76, 201, 240, 0.7);
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-10px) rotate(5deg); }
+            color: var(--nb-black);
+            text-shadow: 4px 4px 0 var(--nb-yellow);
         }
         
         .login-box h1 {
-            font-size: 2.2rem;
+            font-size: 2rem;
             margin-bottom: 10px;
-            color: white;
-            text-shadow: 0 0 15px rgba(76, 201, 240, 0.7);
+            color: var(--nb-black);
+            text-transform: uppercase;
+            font-weight: 900;
+            letter-spacing: 2px;
         }
         
         .subtitle {
-            color: var(--accent);
+            color: var(--nb-black);
             margin-bottom: 40px;
             font-size: 1.1rem;
+            font-weight: 700;
+            text-transform: uppercase;
         }
         
         /* ФОРМЫ */
@@ -104,42 +85,44 @@
         .form-group label {
             display: block;
             margin-bottom: 8px;
-            font-weight: 500;
-            color: var(--accent);
+            font-weight: 900;
+            color: var(--nb-black);
             font-size: 1rem;
+            text-transform: uppercase;
         }
         
         .form-group input {
             width: 100%;
             padding: 18px 20px;
-            background: rgba(255, 255, 255, 0.08);
-            border: 2px solid #334155;
-            border-radius: 12px;
-            color: white;
+            background: var(--nb-white);
+            border: var(--nb-border);
+            border-radius: 0;
+            color: var(--nb-black);
             font-size: 1.1rem;
-            transition: all 0.3s ease;
             font-family: inherit;
+            font-weight: 700;
+            box-shadow: inset 3px 3px 0 rgba(0,0,0,0.1);
         }
         
         .form-group input:focus {
             outline: none;
-            border-color: var(--accent);
-            background: rgba(76, 201, 240, 0.15);
-            box-shadow: 0 0 0 4px rgba(76, 201, 240, 0.1);
+            box-shadow: var(--nb-shadow-sm);
         }
         
         .code-input-container input {
             font-family: 'Courier New', monospace;
             font-size: 1.4rem;
-            letter-spacing: 2px;
+            letter-spacing: 4px;
             text-align: center;
+            font-weight: 900;
         }
         
         .code-hint {
-            color: var(--gray);
+            color: var(--nb-black);
             font-size: 0.9rem;
             margin-top: 8px;
             text-align: center;
+            font-weight: 700;
         }
         
         /* КНОПКИ */
@@ -151,50 +134,57 @@
             width: 100%;
             padding: 20px;
             font-size: 1.1rem;
-            font-weight: 600;
-            border: none;
-            border-radius: 12px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: var(--nb-border);
+            border-radius: 0;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.1s ease;
             margin: 10px 0;
+            box-shadow: var(--nb-shadow-sm);
+            font-family: inherit;
         }
         
         .btn-join {
-            background: linear-gradient(45deg, var(--accent), #0077b6);
-            color: white;
+            background: var(--nb-green);
+            color: var(--nb-black);
         }
         
         .btn-leave {
-            background: linear-gradient(45deg, var(--danger), #ff4b2b);
-            color: white;
+            background: var(--nb-red);
+            color: var(--nb-white);
         }
         
         .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-            filter: brightness(1.1);
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0 var(--nb-black);
+        }
+        
+        .btn:active {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0 var(--nb-black);
         }
         
         .login-info {
             margin-top: 30px;
             padding: 20px;
-            background: rgba(0, 173, 181, 0.1);
-            border-radius: 12px;
+            background: var(--nb-yellow);
+            border: var(--nb-border);
             text-align: center;
-            color: var(--gray);
+            color: var(--nb-black);
             font-size: 0.95rem;
+            font-weight: 700;
         }
         
         /* ЭКРАН ОЖИДАНИЯ */
-        .waiting-box {
-            text-align: center;
-        }
+        .waiting-box { text-align: center; }
         
         .loader {
             width: 70px;
             height: 70px;
-            border: 5px solid rgba(255, 255, 255, 0.1);
-            border-top: 5px solid var(--accent);
+            border: 6px solid var(--nb-black);
+            border-top: 6px solid var(--nb-yellow);
             border-radius: 50%;
             margin: 0 auto 25px;
             animation: spin 1.5s linear infinite;
@@ -206,58 +196,60 @@
         }
         
         .waiting-box h2 {
-            color: var(--accent);
+            color: var(--nb-black);
             margin-bottom: 10px;
             font-size: 1.8rem;
+            text-transform: uppercase;
+            font-weight: 900;
         }
         
         .user-info {
-            background: rgba(255, 255, 255, 0.05);
+            background: var(--nb-white);
+            border: var(--nb-border);
             padding: 25px;
-            border-radius: 15px;
             margin: 30px 0;
             text-align: left;
+            box-shadow: var(--nb-shadow-sm);
         }
         
         .info-item {
             display: flex;
             justify-content: space-between;
             padding: 12px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 2px dashed var(--nb-black);
         }
         
-        .info-item:last-child {
-            border-bottom: none;
-        }
+        .info-item:last-child { border-bottom: none; }
         
-        .info-item span {
-            color: var(--gray);
-        }
+        .info-item span { color: var(--nb-black); font-weight: 700; }
         
         .info-item strong, .info-item code {
-            color: var(--success);
+            color: var(--nb-black);
             font-size: 1.1rem;
+            font-weight: 900;
+            background: var(--nb-yellow);
+            padding: 2px 8px;
+            border: 2px solid var(--nb-black);
         }
         
         .room-info {
             margin: 25px 0;
-            color: var(--accent);
+            color: var(--nb-black);
             font-size: 1.1rem;
+            font-weight: 900;
+            text-transform: uppercase;
         }
         
         /* ЭКРАН ВОПРОСА */
-        .question-box {
-            height: 100%;
-        }
-        
         .question-header {
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            background: var(--nb-black);
+            color: var(--nb-white);
             padding: 20px;
-            border-radius: 15px 15px 0 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 25px;
+            border: var(--nb-border);
         }
         
         .question-meta {
@@ -267,31 +259,30 @@
         }
         
         .question-type {
-            background: rgba(0, 0, 0, 0.2);
-            color: white;
+            background: var(--nb-yellow);
+            color: var(--nb-black);
             padding: 8px 16px;
-            border-radius: 20px;
-            font-weight: bold;
+            font-weight: 900;
             font-size: 0.9rem;
+            border: 2px solid var(--nb-black);
+            text-transform: uppercase;
         }
         
         .question-number {
-            color: white;
+            color: var(--nb-white);
             font-size: 1.1rem;
-            font-weight: bold;
-        }
-        
-        .question-content {
-            padding: 10px 0;
+            font-weight: 900;
+            text-transform: uppercase;
         }
         
         .question-text {
             font-size: 1.4rem;
-            color: white;
+            color: var(--nb-black);
             line-height: 1.5;
             margin-bottom: 35px;
             text-align: center;
             padding: 0 10px;
+            font-weight: 900;
         }
         
         .options {
@@ -302,42 +293,44 @@
         }
         
         .option-btn {
-            background: rgba(255, 255, 255, 0.08);
-            border: 2px solid #334155;
-            border-radius: 15px;
+            background: var(--nb-white);
+            border: var(--nb-border);
+            border-radius: 0;
             padding: 22px 20px;
-            color: white;
+            color: var(--nb-black);
             font-size: 1.1rem;
             text-align: left;
             display: flex;
             align-items: center;
             gap: 20px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.1s ease;
+            box-shadow: var(--nb-shadow-sm);
+            font-family: inherit;
+            font-weight: 700;
         }
         
         .option-btn:hover {
-            background: rgba(0, 173, 181, 0.2);
-            border-color: var(--accent);
-            transform: translateY(-2px);
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0 var(--nb-black);
+            background: var(--nb-yellow);
         }
         
         .option-btn.selected {
-            background: rgba(0, 173, 181, 0.3);
-            border-color: var(--success);
-            transform: scale(1.02);
+            background: var(--nb-green);
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0 var(--nb-black);
         }
         
         .option-letter {
             width: 45px;
             height: 45px;
-            background: var(--accent);
-            color: white;
-            border-radius: 50%;
+            background: var(--nb-black);
+            color: var(--nb-white);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: bold;
+            font-weight: 900;
             font-size: 1.2rem;
             flex-shrink: 0;
         }
@@ -345,112 +338,67 @@
         .answer-status {
             text-align: center;
             padding: 20px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
+            background: var(--nb-white);
+            border: var(--nb-border);
             margin-top: 20px;
-            color: var(--success);
-            font-weight: bold;
+            color: var(--nb-black);
+            font-weight: 900;
             font-size: 1.1rem;
+            text-transform: uppercase;
+            box-shadow: var(--nb-shadow-sm);
         }
         
-        /* ЭКРАН РЕЗУЛЬТАТА */
-        .result-box {
-            text-align: center;
-        }
+        /* РЕЗУЛЬТАТ */
+        .result-box { text-align: center; }
         
         .result-box h2 {
-            color: var(--accent);
+            color: var(--nb-black);
             margin-bottom: 30px;
             font-size: 1.8rem;
+            text-transform: uppercase;
+            font-weight: 900;
         }
         
         .result-content {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
+            background: var(--nb-white);
+            border: var(--nb-border);
+            box-shadow: var(--nb-shadow);
             padding: 30px;
             margin-bottom: 30px;
-            border: 2px solid var(--accent);
-            color: white;
+            color: var(--nb-black);
         }
         
         .next-info {
-            color: var(--gray);
+            color: var(--nb-black);
             font-size: 1rem;
-        }
-        
-        .next-info p {
-            margin-bottom: 15px;
+            font-weight: 700;
         }
         
         /* АДАПТИВНОСТЬ */
-        @media (max-width: 768px) {
-            body {
-                padding: 10px;
-            }
-            
-            .student-container {
-                border-radius: 20px;
-            }
-            
-            .screen {
-                padding: 25px;
-            }
-            
-            .logo {
-                font-size: 60px;
-            }
-            
-            .question-text {
-                font-size: 1.2rem;
-            }
-            
-            .option-btn {
-                padding: 18px 15px;
-                font-size: 1rem;
-            }
-        }
-        
         @media (max-width: 480px) {
-            .screen {
-                padding: 20px;
-            }
-            
-            .question-header {
-                flex-direction: column;
-                gap: 15px;
-                text-align: center;
-            }
-            
-            .question-text {
-                font-size: 1.1rem;
-            }
-            
-            .option-btn {
-                padding: 15px 12px;
-            }
-            
-            .option-letter {
-                width: 40px;
-                height: 40px;
-                font-size: 1rem;
-            }
+            body { padding: 10px; }
+            .screen { padding: 25px; }
+            .logo { font-size: 60px; }
+            .question-text { font-size: 1.15rem; }
+            .option-btn { padding: 15px 12px; font-size: 0.95rem; }
+            .option-letter { width: 40px; height: 40px; font-size: 1rem; }
+            .login-box h1 { font-size: 1.5rem; }
         }
     </style>
 </head>
 <body class="student-page">
     <div class="student-container">
-        <!-- ЭКРАН 1: ВХОД -->
         <div id="joinScreen" class="screen active">
             <div class="login-box">
                 <div class="logo">📱</div>
                 <h1>РУССКИЙ ЯЗЫК КАХУТ</h1>
-                <p class="subtitle">Чередующиеся гласные в корне</p>
+                <p class="subtitle">Чередующиеся гласные</p>
                 
                 <div class="login-form">
                     <div class="form-group">
                         <label>Ваше имя:</label>
                         <input type="text" id="playerName" 
-                               placeholder="Введите ваше имя"
+                               placeholder="Введите имя"
                                maxlength="15"
                                autocomplete="off">
                     </div>
@@ -460,7 +408,7 @@
                         <div class="code-input-container">
                             <input type="text" 
                                    id="gameCode" 
-                                   placeholder="Введите 8 цифр"
+                                   placeholder="00000000"
                                    maxlength="8"
                                    inputmode="numeric"
                                    pattern="[0-9]*"
@@ -474,19 +422,18 @@
                     </button>
                     
                     <div class="login-info">
-                        <p><i class="fas fa-bullhorn"></i> Код игры показывает учитель на доске</p>
-                        <p><i class="fas fa-mobile-alt"></i> Используйте телефон для ответов</p>
+                        <p><i class="fas fa-bullhorn"></i> Код показывает учитель</p>
+                        <p><i class="fas fa-mobile-alt"></i> Используйте телефон</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- ЭКРАН 2: ОЖИДАНИЕ -->
         <div id="waitingScreen" class="screen">
             <div class="waiting-box">
                 <div class="loader"></div>
                 <h2>ОЖИДАНИЕ...</h2>
-                <p>Учитель скоро запустит вопрос</p>
+                <p style="font-weight: 700;">Учитель скоро запустит вопрос</p>
                 
                 <div class="user-info">
                     <div class="info-item">
@@ -494,13 +441,13 @@
                         <strong id="displayName">-</strong>
                     </div>
                     <div class="info-item">
-                        <span>Код комнаты:</span>
+                        <span>Код:</span>
                         <code id="displayCode">-</code>
                     </div>
                 </div>
                 
                 <div class="room-info">
-                    <p>👥 Игроков в комнате: <span id="roomPlayers">1</span></p>
+                    <p>👥 Игроков: <span id="roomPlayers">1</span></p>
                 </div>
                 
                 <button onclick="leaveGame()" class="btn btn-leave">
@@ -509,38 +456,35 @@
             </div>
         </div>
 
-        <!-- ЭКРАН 3: ВОПРОС -->
         <div id="questionScreen" class="screen">
             <div class="question-box">
                 <div class="question-header">
                     <div class="question-meta">
-                        <span class="question-type" id="questionType">Русский язык</span>
+                        <span class="question-type" id="questionType">РУССКИЙ ЯЗЫК</span>
                         <span class="question-number">Вопрос <span id="currentQ">1</span></span>
                     </div>
                 </div>
                 
                 <div class="question-content">
                     <div class="question-text" id="questionText">
-                        Текст вопроса появится здесь
+                        Текст вопроса
                     </div>
                     
                     <div class="options" id="optionsContainer">
-                        <!-- Варианты загрузятся через JS -->
                     </div>
                     
                     <div class="answer-status" id="answerStatus">
-                        Выберите вариант ответа
+                        Выберите вариант
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- ЭКРАН 4: РЕЗУЛЬТАТ -->
         <div id="resultScreen" class="screen">
             <div class="result-box">
                 <h2>📊 РЕЗУЛЬТАТ</h2>
                 <div class="result-content" id="resultContent">
-                    Загрузка результата...
+                    Загрузка...
                 </div>
                 <div class="next-info">
                     <p>Следующий вопрос скоро начнется</p>
@@ -549,7 +493,6 @@
         </div>
     </div>
 
-    <!-- Firebase config -->
     <script src="firebase-config.js"></script>
     <script src="student.js"></script>
 </body>
